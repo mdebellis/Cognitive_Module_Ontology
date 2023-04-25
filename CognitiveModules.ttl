@@ -114,9 +114,30 @@ For more info contact: mdebellissf@gmail.com""" .
 <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#inModule
+cm:inModule rdf:type owl:AnnotationProperty ;
+            rdfs:comment "Defines which Cogitive Module a class or property belongs to" ;
+            rdfs:range cm:CognitiveModule .
+
+
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#dominates
+cm:dominates rdf:type owl:ObjectProperty ;
+             owl:inverseOf cm:isDominatedBy ;
+             rdf:type owl:TransitiveProperty ;
+             rdfs:domain :Agent ;
+             rdfs:range :Agent ;
+             cm:inModule cm:SocialDomain .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#expressesBelief
+cm:expressesBelief rdf:type owl:ObjectProperty ;
+                   rdfs:domain cm:Statement ;
+                   rdfs:range cm:Belief .
+
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasBelief
 cm:hasBelief rdf:type owl:ObjectProperty ;
@@ -126,6 +147,31 @@ cm:hasBelief rdf:type owl:ObjectProperty ;
              rdfs:label "has Belief" .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasBrother
+cm:hasBrother rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf cm:hasSibling ;
+              owl:inverseOf cm:hasSister ;
+              rdfs:range cm:Man .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasChild
+cm:hasChild rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasKin .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasFather
+cm:hasFather rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf cm:hasParent .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasGender
+cm:hasGender rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Human ;
+             rdfs:range cm:Gender ;
+             cm:inModule cm:SocialDomain .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasGoal
 cm:hasGoal rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf :hasPostCondition ;
@@ -133,18 +179,97 @@ cm:hasGoal rdf:type owl:ObjectProperty ;
            rdfs:range cm:Goal .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasHusband
+cm:hasHusband rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf cm:hasSpouse ;
+              owl:inverseOf cm:hasWife .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasMother
+cm:hasMother rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf cm:hasParent .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasParent
+cm:hasParent rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasKin .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasSibling
+cm:hasSibling rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasKin .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasSister
+cm:hasSister rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf cm:hasSibling ;
+             rdfs:range cm:Woman .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasSpouse
+cm:hasSpouse rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasKin ;
+             rdfs:domain :Human ;
+             rdfs:range :Human .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#hasWife
+cm:hasWife rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf cm:hasSpouse ;
+           rdfs:domain cm:Man ;
+           rdfs:range cm:Woman .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#implies
+cm:implies rdf:type owl:ObjectProperty ;
+           owl:inverseOf cm:isImpliedBy ;
+           rdfs:domain :Fact ;
+           rdfs:range :Fact .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isBelievedBy
 cm:isBelievedBy rdf:type owl:ObjectProperty .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isChildOf
+cm:isChildOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasKin .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isDominatedBy
+cm:isDominatedBy rdf:type owl:ObjectProperty ;
+                 cm:inModule cm:SocialDomain .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isFatherOf
+cm:isFatherOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf cm:isParentOf .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isImpliedBy
+cm:isImpliedBy rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isMotherOf
+cm:isMotherOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf cm:isParentOf .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isParentOf
+cm:isParentOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasKin .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isPostConditionOf
 cm:isPostConditionOf rdf:type owl:ObjectProperty ;
-                     owl:inverseOf :hasPostCondition .
+                     owl:inverseOf :hasPostCondition ;
+                     cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isPreConditionOf
 cm:isPreConditionOf rdf:type owl:ObjectProperty ;
-                    owl:inverseOf :hasPreCondition .
+                    owl:inverseOf :hasPreCondition ;
+                    cm:inModule :CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isTaskOf
@@ -154,50 +279,71 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
             rdfs:label "is Task Of" .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#makesStatement
+cm:makesStatement rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Agent ;
+                  rdfs:range cm:Statement .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#occurredIn
+cm:occurredIn rdf:type owl:ObjectProperty ;
+              rdfs:domain :Fact ;
+              rdfs:range :TimeDomain .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#refersTo
+cm:refersTo rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#steals
+cm:steals rdf:type owl:ObjectProperty ;
+          rdfs:domain :Cheater ;
+          rdfs:range [ rdf:type owl:Restriction ;
+                       owl:onProperty :hasUtility ;
+                       owl:someValuesFrom xsd:decimal
+                     ] .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/above
 :above rdf:type owl:ObjectProperty ;
        owl:inverseOf :below ;
        rdf:type owl:TransitiveProperty ;
        rdfs:domain :Place ;
-       rdfs:range :Place .
+       rdfs:range :Place ;
+       cm:inModule cm:PhysicalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/after
 :after rdf:type owl:ObjectProperty ;
-       owl:inverseOf :before .
+       owl:inverseOf :before ;
+       cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/before
 :before rdf:type owl:ObjectProperty ;
         rdfs:domain :TimeDomain ;
-        rdfs:range :TimeDomain .
-
-
-###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/believesFact
-:believesFact rdf:type owl:ObjectProperty ;
-              rdfs:domain :Agent ;
-              rdfs:range :Fact .
+        rdfs:range :TimeDomain ;
+        cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/below
-:below rdf:type owl:ObjectProperty .
+:below rdf:type owl:ObjectProperty ;
+       cm:inModule cm:PhysicalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/farFrom
 :farFrom rdf:type owl:ObjectProperty ,
                   owl:SymmetricProperty ,
-                  owl:TransitiveProperty .
+                  owl:TransitiveProperty ;
+         cm:inModule cm:PhysicalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasCause
 :hasCause rdf:type owl:ObjectProperty ;
           owl:inverseOf :isCauseOf ;
-          rdfs:domain [ rdf:type owl:Class ;
-                        owl:unionOf ( :Event
-                                      :State
-                                    )
-                      ] ;
+          rdfs:domain :Fact ;
           rdfs:range :CausalDomain ;
+          cm:inModule cm:CausalDomain ;
           rdfs:label "has Cause" .
 
 
@@ -205,6 +351,7 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :hasDurationEnd rdf:type owl:ObjectProperty ;
                 rdfs:domain :Duration ;
                 rdfs:range :Instant ;
+                cm:inModule cm:TimeDomain ;
                 rdfs:label "has Duration End" .
 
 
@@ -212,6 +359,7 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :hasDurationStart rdf:type owl:ObjectProperty ;
                   rdfs:domain :Duration ;
                   rdfs:range :Instant ;
+                  cm:inModule cm:TimeDomain ;
                   rdfs:label "has Duration Start" .
 
 
@@ -231,17 +379,20 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasKin
 :hasKin rdf:type owl:ObjectProperty ,
-                 owl:SymmetricProperty ;
+                 owl:SymmetricProperty ,
+                 owl:TransitiveProperty ;
         rdfs:domain [ rdf:type owl:Class ;
                       owl:unionOf ( :Animal
                                     :Human
                                   )
-                    ] .
+                    ] ;
+        cm:inModule cm:SocialDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasLocation
 :hasLocation rdf:type owl:ObjectProperty ;
              rdfs:range :Place ;
+             cm:inModule cm:PhysicalDomain ;
              rdfs:label "has Location" .
 
 
@@ -262,14 +413,16 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :hasPostCondition rdf:type owl:ObjectProperty ;
                   rdfs:subPropertyOf owl:topObjectProperty ;
                   rdfs:domain :Event ;
-                  rdfs:range :State .
+                  rdfs:range :State ;
+                  cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasPreCondition
 :hasPreCondition rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
                  rdfs:domain :Event ;
-                 rdfs:range :State .
+                 rdfs:range :State ;
+                 cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasPredecessor
@@ -289,7 +442,8 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasStartState
 :hasStartState rdf:type owl:ObjectProperty ;
                rdfs:domain :Plan ;
-               rdfs:range :State .
+               rdfs:range :State ;
+               cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasSubject
@@ -327,7 +481,8 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :isInContactWith rdf:type owl:ObjectProperty ,
                           owl:SymmetricProperty ;
                  rdfs:domain :PhysicalThing ;
-                 owl:propertyDisjointWith :notInContactWith .
+                 owl:propertyDisjointWith :notInContactWith ;
+                 cm:inModule cm:PhysicalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/isMemberOf
@@ -345,6 +500,7 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :nextTo rdf:type owl:ObjectProperty ,
                  owl:SymmetricProperty ;
         rdfs:domain :Place ;
+        cm:inModule cm:PhysicalDomain ;
         rdfs:label "next To" .
 
 
@@ -352,6 +508,7 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 :notInContactWith rdf:type owl:ObjectProperty ,
                            owl:SymmetricProperty ;
                   rdfs:domain :PhysicalThing ;
+                  cm:inModule cm:PhysicalDomain ;
                   rdfs:label "not In Contact With" .
 
 
@@ -361,17 +518,23 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
                rdf:type owl:TransitiveProperty ;
                rdfs:domain :TimeDomain ;
                rdfs:range :TimeDomain ;
+               cm:inModule cm:TimeDomain ;
                rdfs:label "temporal After" .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/temporalBefore
 :temporalBefore rdf:type owl:ObjectProperty ;
+                cm:inModule cm:TimeDomain ;
                 rdfs:label "temporal Before" .
 
 
 #################################################################
 #    Data properties
 #################################################################
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#name
+cm:name rdf:type owl:DatatypeProperty .
+
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasCertainty
 :hasCertainty rdf:type owl:DatatypeProperty ;
@@ -390,11 +553,6 @@ cm:isTaskOf rdf:type owl:ObjectProperty ;
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/hasUtility
 :hasUtility rdf:type owl:DatatypeProperty ,
                      owl:FunctionalProperty ;
-            rdfs:domain [ rdf:type owl:Class ;
-                          owl:unionOf ( :MoralEvent
-                                        :MoralState
-                                      )
-                        ] ;
             rdfs:range xsd:decimal ;
             rdfs:comment "Utility function as defined in H. Gintis, The Bounds of Reason. Princeton University Press, 2014." .
 
@@ -421,7 +579,25 @@ cm:Belief rdf:type owl:Class ;
                                                                         ]
                                                                       )
                                                ]
-                          ] .
+                          ] ;
+          cm:inModule :BeliefDomain .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#CognitiveModule
+cm:CognitiveModule rdf:type owl:Class ;
+                   rdfs:comment "Class for puns of the Cognitive Modules" ;
+                   rdfs:label "Cognitive Module" .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Gender
+cm:Gender rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:oneOf ( cm:Female
+                                            cm:Male
+                                          )
+                              ] ;
+          rdfs:subClassOf cm:SocialDomain ;
+          cm:inModule cm:SocialDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Goal
@@ -430,12 +606,19 @@ cm:Goal rdf:type owl:Class ;
                         [ rdf:type owl:Restriction ;
                           owl:onProperty cm:isPostConditionOf ;
                           owl:someValuesFrom cm:Task
-                        ] .
+                        ] ;
+        cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#LogicalForm
 cm:LogicalForm rdf:type owl:Class ;
                rdfs:label "Logical Form System" .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Man
+cm:Man rdf:type owl:Class ;
+       rdfs:subClassOf :Human ;
+       cm:inModule cm:FolkBiologyDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Phoneme
@@ -459,9 +642,22 @@ cm:Sentence rdf:type owl:Class ;
                             ] .
 
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#SocialDomain
+cm:SocialDomain rdf:type owl:Class ;
+                rdfs:subClassOf :ConceptualIntentionalSystem .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Statement
+cm:Statement rdf:type owl:Class ;
+             rdfs:subClassOf cm:LogicalForm ,
+                             :Event ;
+             rdfs:comment "Some assertion made by an Agent that some Fact is true, false, or uncertain" .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#SymbolicRepresentation
 cm:SymbolicRepresentation rdf:type owl:Class ;
                           rdfs:subClassOf :FLN ;
+                          rdfs:comment "Primary Source: The Symbolic Species Terrence Deacon" ;
                           rdfs:label "Symbolic Representation" .
 
 
@@ -475,6 +671,17 @@ cm:Task rdf:type owl:Class ;
                                                  ) ;
                               rdf:type owl:Class
                             ] .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#TestData
+cm:TestData rdf:type owl:Class ;
+            rdfs:label "Test Data" .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Woman
+cm:Woman rdf:type owl:Class ;
+         rdfs:subClassOf :Human ;
+         cm:inModule cm:FolkBiologyDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Word
@@ -492,12 +699,14 @@ cm:Word rdf:type owl:Class ;
 :Agent rdf:type owl:Class ;
        rdfs:subClassOf :CausalDomain ;
        owl:disjointWith :Event ,
-                        :State .
+                        :State ;
+       cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Animal
 :Animal rdf:type owl:Class ;
-        rdfs:subClassOf :FolkBiologyDomain .
+        rdfs:subClassOf :FolkBiologyDomain ;
+        cm:inModule cm:FolkBiologyDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/BeliefDomain
@@ -511,6 +720,7 @@ cm:Word rdf:type owl:Class ;
 :BenevolentSpirit rdf:type owl:Class ;
                   rdfs:subClassOf :Cooperator ,
                                   :Spirit ;
+                  cm:inModule cm:SpiritualDomain ;
                   rdfs:comment "A spirit that is benevolent. Benevolent and Malicious Spirit are not disjoint because in many hunter gatherer belief systems a spirit can be both depending on cirucmstances." ;
                   rdfs:label "Benevolent Spirit" .
 
@@ -524,7 +734,8 @@ cm:Word rdf:type owl:Class ;
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Cheater
 :Cheater rdf:type owl:Class ;
-         rdfs:subClassOf :MoralAgent .
+         rdfs:subClassOf :MoralAgent ;
+         cm:inModule cm:MoralDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Concept
@@ -543,30 +754,36 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Cooperator
 :Cooperator rdf:type owl:Class ;
-            rdfs:subClassOf :MoralAgent .
+            rdfs:subClassOf :MoralAgent ;
+            cm:inModule cm:MoralDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Duration
 :Duration rdf:type owl:Class ;
           rdfs:subClassOf :Sequence ,
-                          :TimeDomain .
+                          :TimeDomain ;
+          cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/EnemyTribe
 :EnemyTribe rdf:type owl:Class ;
             rdfs:subClassOf :Tribe ;
-            owl:disjointWith :MyTribe .
+            owl:disjointWith :MyTribe ;
+            cm:inModule cm:SocialDomain ;
+            rdfs:label "Enemy Tribe" .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Essence
 :Essence rdf:type owl:Class ;
-         rdfs:subClassOf :FolkBiologyDomain .
+         rdfs:subClassOf :FolkBiologyDomain ;
+         cm:inModule cm:FolkBiologyDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Event
 :Event rdf:type owl:Class ;
-       rdfs:subClassOf :CausalDomain ;
-       owl:disjointWith :State .
+       rdfs:subClassOf :Fact ;
+       owl:disjointWith :State ;
+       cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/FLN
@@ -578,7 +795,7 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Fact
 :Fact rdf:type owl:Class ;
-      rdfs:subClassOf cm:LogicalForm ,
+      rdfs:subClassOf :CausalDomain ,
                       [ rdf:type owl:Restriction ;
                         owl:onProperty :hasObject ;
                         owl:someValuesFrom :Concept
@@ -591,7 +808,8 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
                         owl:onProperty :hasPredicate ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                         owl:onClass :Predicate
-                      ] .
+                      ] ;
+      cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/FolkBiologyDomain
@@ -611,7 +829,8 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
                                                  ) ;
                               rdf:type owl:Class
                             ] ;
-        owl:disjointWith :Past .
+        owl:disjointWith :Past ;
+        cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/FutureInstant
@@ -625,6 +844,7 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
                                      rdf:type owl:Class
                                    ] ;
                owl:disjointWith :PastInstant ;
+               cm:inModule cm:TimeDomain ;
                rdfs:label "Future Instant" .
 
 
@@ -632,6 +852,7 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 :Ghost rdf:type owl:Class ;
        rdfs:subClassOf :Person ,
                        :SpiritualDomain ;
+       cm:inModule cm:SpiritualDomain ;
        rdfs:comment "A spiritual presence of a person who is no longer alive. Often a relative or ancestor." .
 
 
@@ -644,12 +865,14 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Human
 :Human rdf:type owl:Class ;
-       rdfs:subClassOf :FolkBiologyDomain .
+       rdfs:subClassOf :FolkBiologyDomain ;
+       cm:inModule cm:FolkBiologyDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Instant
 :Instant rdf:type owl:Class ;
-         rdfs:subClassOf :TimeDomain .
+         rdfs:subClassOf :TimeDomain ;
+         cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/LocationDomain
@@ -662,6 +885,7 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 :MaliciousSpirit rdf:type owl:Class ;
                  rdfs:subClassOf :Cheater ,
                                  :Spirit ;
+                 cm:inModule cm:SpiritualDomain ;
                  rdfs:comment "A spirit that is malicious.. Benevolent and Malicious Spirit are not disjoint because in many hunter gatherer belief systems a spirit can be both depending on cirucmstances" ;
                  rdfs:label "Malicious Spirit" .
 
@@ -669,6 +893,7 @@ N. Chomsky, The Minimalist Program, 20th Anniversary Edition. MIT Press, 2014.""
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/MoralAgent
 :MoralAgent rdf:type owl:Class ;
             rdfs:subClassOf :MoralDomain ;
+            cm:inModule cm:MoralDomain ;
             rdfs:comment "An Agent (note: this can be a Spirit or Group as well as a Person, that the Person assigns some moral ranking to (e.g., Cheater, Cooperator, MyTribe, EnemyTribe)." ;
             rdfs:label "Moral Agent" .
 
@@ -686,6 +911,7 @@ C. Boehm, Hierarchy in the Forest. Harvard University Press, 2009.""" ;
 :MoralEvent rdf:type owl:Class ;
             rdfs:subClassOf :Event ,
                             :MoralDomain ;
+            cm:inModule cm:MoralDomain ;
             rdfs:comment "An Event that an Agent assigns some utility (value)." ;
             rdfs:label "Moral Event" .
 
@@ -694,13 +920,16 @@ C. Boehm, Hierarchy in the Forest. Harvard University Press, 2009.""" ;
 :MoralState rdf:type owl:Class ;
             rdfs:subClassOf :MoralDomain ,
                             :State ;
+            cm:inModule cm:MoralDomain ;
             rdfs:comment "A State  that an Agent assigns some utility (value)." ;
             rdfs:label "Moral State" .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/MyTribe
 :MyTribe rdf:type owl:Class ;
-         rdfs:subClassOf :Tribe .
+         rdfs:subClassOf :Tribe ;
+         cm:inModule cm:SocialDomain ;
+         rdfs:label "My Tribe" .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/NumberDomain
@@ -720,7 +949,8 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
                                                  ]
                                                ) ;
                             rdf:type owl:Class
-                          ] .
+                          ] ;
+      cm:inModule cm:TimeDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/PastInstant
@@ -733,6 +963,7 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
                                                       ) ;
                                    rdf:type owl:Class
                                  ] ;
+             cm:inModule cm:TimeDomain ;
              rdfs:label "Past Instant" .
 
 
@@ -740,7 +971,8 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 :Person rdf:type owl:Class ;
         rdfs:subClassOf :Agent ,
                         :Human ,
-                        :MoralAgent .
+                        :MoralAgent ;
+        cm:inModule cm:MoralDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/PhysicalDomain
@@ -753,6 +985,7 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/PhysicalThing
 :PhysicalThing rdf:type owl:Class ;
                rdfs:subClassOf :PhysicalDomain ;
+               cm:inModule cm:PhysicalDomain ;
                rdfs:label "Physical Thing" .
 
 
@@ -773,7 +1006,8 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
                             rdf:type owl:Class
                           ] ;
       rdfs:subClassOf :CausalDomain ,
-                      :Sequence .
+                      :Sequence ;
+      cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Plant
@@ -791,7 +1025,8 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Sequence
 :Sequence rdf:type owl:Class ;
           rdfs:subClassOf :NumberDomain ,
-                          :Set .
+                          :Set ;
+          cm:inModule cm:NumberDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Set
@@ -803,6 +1038,7 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 :Spirit rdf:type owl:Class ;
         rdfs:subClassOf :Agent ,
                         :SpiritualDomain ;
+        cm:inModule cm:SpiritualDomain ;
         rdfs:comment "A spiritual entity that is not the spirit of a dead person. Benevolent and Malicious Spirit are not disjoint because in many hunter gatherer belief systems a spirit can be both depending on cirucmstances" .
 
 
@@ -815,12 +1051,13 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/State
 :State rdf:type owl:Class ;
-       rdfs:subClassOf :CausalDomain ,
+       rdfs:subClassOf :Fact ,
                        :Set ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :hasMember ;
                          owl:someValuesFrom :Fact
-                       ] .
+                       ] ;
+       cm:inModule cm:CausalDomain .
 
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/TimeDomain
@@ -832,17 +1069,213 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
 
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Tribe
 :Tribe rdf:type owl:Class ;
-       rdfs:subClassOf :GroupAgent ,
-                       :MoralAgent .
+       rdfs:subClassOf cm:SocialDomain ,
+                       :GroupAgent ;
+       cm:inModule cm:SocialDomain .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Animal
+cm:Animal rdf:type owl:NamedIndividual ,
+                   :Concept .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#BeliefDomain
+cm:BeliefDomain rdf:type owl:NamedIndividual ,
+                         cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#CausalDomain
+cm:CausalDomain rdf:type owl:NamedIndividual ,
+                         cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Cephu
+cm:Cephu rdf:type owl:NamedIndividual ,
+                  cm:TestData ,
+                  :Person ;
+         :isTribeMemberOf cm:MbutiTribe .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#CephuIsAnimal
+cm:CephuIsAnimal rdf:type owl:NamedIndividual ,
+                          :MoralState ;
+                 :hasObject cm:Animal ;
+                 :hasPredicate cm:isA ;
+                 :hasSubject cm:Cephu .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#CephuStolePrey1
+cm:CephuStolePrey1 rdf:type owl:NamedIndividual ,
+                            :MoralEvent ;
+                   cm:implies cm:CephuIsAnimal ;
+                   cm:occurredIn cm:ThePast ;
+                   :hasObject cm:SmallPrey1 ;
+                   :hasPredicate cm:steals ;
+                   :hasSubject cm:Cephu .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Ekianga
+cm:Ekianga rdf:type owl:NamedIndividual ,
+                    :Person ;
+           cm:hasBrother cm:Kenge ;
+           cm:hasGender cm:Male ;
+           :isTribeMemberOf cm:MbutiTribe .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Female
+cm:Female rdf:type owl:NamedIndividual ,
+                   cm:Gender .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#FolkBiologyDomain
+cm:FolkBiologyDomain rdf:type owl:NamedIndividual ,
+                              cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Kenge
+cm:Kenge rdf:type owl:NamedIndividual ,
+                  :Person ;
+         cm:dominates cm:Cephu ;
+         cm:hasBelief cm:CephuIsAnimal ;
+         cm:hasGender cm:Male ;
+         cm:makesStatement cm:KengeStatesCephuIsAnimal ;
+         :isTribeMemberOf cm:MbutiTribe .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#KengeBelievesCephuIsAnimal
+cm:KengeBelievesCephuIsAnimal rdf:type owl:NamedIndividual ,
+                                       cm:Belief ;
+                              cm:refersTo cm:CephuIsAnimal ;
+                              :hasCertainty .90 .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#KengeBelievesCephuStolePrey
+cm:KengeBelievesCephuStolePrey rdf:type owl:NamedIndividual ,
+                                        cm:Belief ;
+                               cm:isBelievedBy cm:Kenge ;
+                               cm:refersTo cm:CephuStolePrey1 ;
+                               :hasCertainty 1 .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#KengeStatesCephuIsAnimal
+cm:KengeStatesCephuIsAnimal rdf:type owl:NamedIndividual ,
+                                     cm:Statement ;
+                            cm:expressesBelief cm:CephuIsAnimal .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#LocationDomain
+cm:LocationDomain rdf:type owl:NamedIndividual ,
+                           cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Male
+cm:Male rdf:type owl:NamedIndividual ,
+                 cm:Gender ;
+        :isTribeMemberOf cm:MbutiTribe .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#Manyalibu
+cm:Manyalibu rdf:type owl:NamedIndividual ,
+                      :Person ;
+             cm:dominates cm:Cephu ,
+                          cm:Ekianga ,
+                          cm:Kenge ;
+             cm:hasGender cm:Male ;
+             :isTribeMemberOf cm:MbutiTribe .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#MbutiTribe
+cm:MbutiTribe rdf:type owl:NamedIndividual ,
+                       cm:TestData ,
+                       :MyTribe ;
+              rdfs:label "Mbuti Tribe" .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#MoralDomain
+cm:MoralDomain rdf:type owl:NamedIndividual ,
+                        cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#NumberDomain
+cm:NumberDomain rdf:type owl:NamedIndividual ,
+                         cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#PhysicalDomain
+cm:PhysicalDomain rdf:type owl:NamedIndividual ,
+                           cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#SmallPrey1
+cm:SmallPrey1 rdf:type owl:NamedIndividual ,
+                       :Animal ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasUtility ;
+                         owl:someValuesFrom xsd:decimal
+                       ] .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#SocialDomain
+cm:SocialDomain rdf:type owl:NamedIndividual ,
+                         cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#SpiritualDomain
+cm:SpiritualDomain rdf:type owl:NamedIndividual ,
+                            cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#TheFuture
+cm:TheFuture rdf:type owl:NamedIndividual ,
+                      :Future .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#ThePast
+cm:ThePast rdf:type owl:NamedIndividual ,
+                    :Past .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#TimeDomain
+cm:TimeDomain rdf:type owl:NamedIndividual ,
+                       cm:CognitiveModule .
+
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#isA
+cm:isA rdf:type owl:NamedIndividual ,
+                :Predicate ;
+       owl:sameAs rdf:type .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+
+###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules#steals
+cm:steals rdf:type owl:NamedIndividual ,
+                   :Predicate .
+
+
 ###  http://www.semanticweb.org/mdebe/ontologies/2023/3/cognitive_modules/Now
 :Now rdf:type owl:NamedIndividual ,
-              :Instant .
+              :Instant ;
+     :after cm:ThePast ;
+     :before cm:TheFuture .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+rdf:type rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+cm:SocialDomain rdfs:label "Social Domain" .
+
+
+cm:steals cm:inModule cm:MoralDomain .
 
 
 #################################################################
@@ -883,7 +1316,19 @@ C. R. Gallistel, 2018, Finding numbers in the brain. Proceedings of the Royal So
                                                        <http://www.w3.org/2003/11/swrl#argument1> :o1 ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :o2
                                                      ] ;
-                                           rdf:rest rdf:nil
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :PhysicalThing ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :o1
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :PhysicalThing ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :o2
+                                                                           ] ;
+                                                                 rdf:rest rdf:nil
+                                                               ]
+                                                    ]
                                          ] ;
    <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
